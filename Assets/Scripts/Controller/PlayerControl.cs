@@ -16,7 +16,7 @@ namespace RPG.Control
 
 
 
-            InteractWithMovment(); 
+            if (InteractWithMovment()) { return; }; 
             
             
             
@@ -37,7 +37,7 @@ namespace RPG.Control
                 if (Input.GetMouseButtonDown(0))
                 {
                     Debug.Log("foundone");
-                    GetComponent<Fighter>().Attack();
+                    GetComponent<Fighter>().Attack(target);
                 }
                 return true;
 
@@ -46,24 +46,33 @@ namespace RPG.Control
             return false;
         }
 
-        private void InteractWithMovment()
+        public bool InteractWithMovment()
         {
-            if (Input.GetMouseButton(0))
-            {
-                MoveTOcursor();
+            
+            return MoveTOcursor();
+               
 
-            }
+       
         }
 
-        private void MoveTOcursor()
+        private bool MoveTOcursor()
         {
             Ray ray = GetMouseRay();
             RaycastHit hit;
             bool hashit = Physics.Raycast(ray, out hit);
             if (hashit)
             {
-                GetComponent<Move>().MoveTODestntion(hit.point);
+                if (Input.GetMouseButton(0))
+                {
+                    GetComponent<Move>().StartMoveAction(hit.point);
+                    return true;
+                }
+
+                
+                
+                
             }
+            return false;
 
 
 
