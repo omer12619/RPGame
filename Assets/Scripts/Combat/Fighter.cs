@@ -2,22 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RPG.Core
+namespace RPG.Combat
 {
-    public class FollowCamera : MonoBehaviour
+    public class Fighter : MonoBehaviour
     {
-        [SerializeField] Transform player;
-        // Start is called before the first frame update
-        void Start()
-        {
 
+        // Start is called before the first frame update
+        public void Attack()
+        {
+            print("Take THat you jerk");
         }
 
         // Update is called once per frame
-        void LateUpdate()
+        void Update()
         {
-            transform.position = player.position;
-
 
         }
     }
