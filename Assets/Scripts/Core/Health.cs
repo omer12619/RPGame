@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace RPG.Combat
+namespace RPG.Core
 {
     public class Health : MonoBehaviour
     {
@@ -41,9 +41,11 @@ namespace RPG.Combat
         {
             if (!die)
             {
+                die = true;
                 GetComponent<CapsuleCollider>().enabled = false;
                 GetComponent<Animator>().SetTrigger("Death");
-                die = true;
+               
+                GetComponent<ActionSchedul>().CancelAction();
             }
         }
 

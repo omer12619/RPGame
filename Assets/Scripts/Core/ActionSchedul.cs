@@ -22,5 +22,10 @@ namespace RPG.Core
             }
             curretAction = action;
         }
+        public void CancelAction()
+        {
+            StartAction(null);
+        }
     }
+    
 }

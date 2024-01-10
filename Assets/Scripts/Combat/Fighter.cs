@@ -11,7 +11,8 @@ namespace RPG.Combat
         [SerializeField] float timeBetweenAttack = 1f;
         [SerializeField] float weaponDamage = 1f;
         Health target;
-        float timeforlastattck = 0f;
+        float timeforlastattck = Mathf.Infinity;
+        
 
         // Start is called before the first frame update
         public void Attack(GameObject combattarget)

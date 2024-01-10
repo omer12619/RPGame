@@ -7,6 +7,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1498048182, guid: 93e62ce1a2cbd6e419d674ebfff80ad0, type: 3}
+      propertyPath: m_Speed
+      value: 420
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498048182, guid: 93e62ce1a2cbd6e419d674ebfff80ad0, type: 3}
+      propertyPath: m_AutoBraking
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498048182, guid: 93e62ce1a2cbd6e419d674ebfff80ad0, type: 3}
+      propertyPath: m_Acceleration
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 688551106944520451, guid: 93e62ce1a2cbd6e419d674ebfff80ad0, type: 3}
       propertyPath: m_Name
       value: Player
@@ -62,6 +74,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 688551106944520451, guid: 93e62ce1a2cbd6e419d674ebfff80ad0, type: 3}
   m_PrefabInstance: {fileID: 1073708334190737456}
   m_PrefabAsset: {fileID: 0}
+--- !u!136 &2231981884321453907
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533867458028759347}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.21885887
+  m_Height: 1.9738712
+  m_Direction: 1
+  m_Center: {x: 0.021306634, y: 0.8886657, z: -0.043813378}
 --- !u!114 &5034030383367270746
 MonoBehaviour:
   m_ObjectHideFlags: 0

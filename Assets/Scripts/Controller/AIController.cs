@@ -1,4 +1,7 @@
 using RPG.Combat;
+using RPG.Core;
+using RPG.Movement;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -13,35 +16,127 @@ namespace RPG.Control
     {
 
         [SerializeField] float chaseDistance = 5f;
+        [SerializeField] PatrolPath patrolPath;
+        [SerializeField] float waypointTolreance=1f;
         GameObject player;
+
+        Vector3 gurdLoaction;
+        int waypoint;
 
 
         Fighter fighter;
+        Health health;
+        float timeSinceSawLastPlayer =Mathf.Infinity;
+        [SerializeField] float timetoseppichose=3f;
 
         private void Start()
         {
             player = GameObject.FindWithTag("Player");
             fighter = GetComponent<Fighter>();
+            health = GetComponent<Health>();
+            gurdLoaction = transform.position;
+
+            if(patrolPath != null)
+            {
+                 waypoint = 0;
+            }
         }
         private void Update()
         {
+            if(health.IsDead()) return;
 
             if (InRangeAttack() && fighter.CanAttack(player))
             {
-               fighter.Attack(player);
+                timeSinceSawLastPlayer = 0;
+                AttackBehaviour();
+            }
+            else if (timetoseppichose>timeSinceSawLastPlayer)
+            {
+                //Suspicion state
+                SuspicionBehaviour();
+
             }
             else
             {
-                fighter.Cancel(); 
+                PatrolBehaviour();
             }
+            timeSinceSawLastPlayer += Time.deltaTime;
 
+        }
+
+        private void PatrolBehaviour()
+        {
+            Vector3 nextPosition = gurdLoaction;
+            if(patrolPath != null)
+            {
+                if (atWaypoint())
+                {
+                    CycleWaypoint();
+                }
+                nextPosition = GetCurretWayPoint();
+
+
+            }
+           
+            GetComponent<Move>().StartMoveAction(nextPosition);
+        }
+
+        private bool atWaypoint()
+        {
+            float distancetoWaypoint = Vector3.Distance(transform.position, GetCurretWayPoint());
+            if(distancetoWaypoint<waypointTolreance) {
+                return true;
+            }
+            return false;
+        }
+
+        private void CycleWaypoint()
+        {
+            waypoint=GetNextIndex(waypoint);
+        }
+
+        private Vector3 GetCurretWayPoint()
+        {
+            return patrolPath.transform.GetChild(waypoint).position;
+
+            
+        }
+
+        private void SuspicionBehaviour()
+        {
+            GetComponent<ActionSchedul>().CancelAction();
+        }
+
+        private void AttackBehaviour()
+        {
+            fighter.Attack(player);
         }
 
         private bool InRangeAttack()
         {
             bool v = Vector3.Distance(player.transform.position, this.transform.position) < chaseDistance;
+            
+            
             return v;
         }
+
+        //Called by unity
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color= Color.yellow;
+
+
+
+            Gizmos.DrawWireSphere(transform.position, chaseDistance);
+        }
+        private int GetNextIndex(int index)
+        {
+            if(index+1 == patrolPath.transform.childCount) { return 0; }
+            
+            return index + 1;
+        }
+        
+      
     }
 }
 
