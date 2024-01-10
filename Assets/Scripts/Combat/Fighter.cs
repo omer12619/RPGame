@@ -14,7 +14,7 @@ namespace RPG.Combat
         float timeforlastattck = 0f;
 
         // Start is called before the first frame update
-        public void Attack(CombatTarget combattarget)
+        public void Attack(GameObject combattarget)
         {
             GetComponent<ActionSchedul>().StartAction(this);
             target = combattarget.GetComponent<Health>();
@@ -31,9 +31,16 @@ namespace RPG.Combat
 
         private void StopAttack()
         {
-            GetComponent<Animator>().SetTrigger("attack");
-            GetComponent<Animator>().SetTrigger("StopAttack");
+            if (target != null)
+            {
+                GetComponent<Animator>().SetTrigger("attack");
+                GetComponent<Animator>().SetTrigger("StopAttack");
+            }
         }
+
+
+
+
 
         // Update is called once per frame
         private void Update()
@@ -62,6 +69,10 @@ namespace RPG.Combat
 
 
         }
+
+
+
+
         void AttackBehaviour()
         {
             transform.LookAt(target.transform);
@@ -82,13 +93,11 @@ namespace RPG.Combat
             
             target.TakeDamage(weaponDamage);
         }
-        public bool CanAttack()
+        public bool CanAttack(GameObject combatTarget)
         {
-            if (target != null&& !target.IsDead()) {
-                return true;
-            }
-            return false;
+            if (combatTarget == null) { return false; }
+            Health targetToTest = combatTarget.GetComponent<Health>();
+            return targetToTest != null && !targetToTest.IsDead();
         }
-        
     }
 }

@@ -31,12 +31,14 @@ namespace RPG.Control
                 CombatTarget target = hit.transform.GetComponent<CombatTarget>();
 
                 if (target == null) continue;
+                GameObject targetObject = target.gameObject;
+                if (GetComponent<Fighter>().CanAttack(target.gameObject)) { continue; }
 
                 if (Input.GetMouseButtonDown(0))
                 {
-                    if (GetComponent<Fighter>().CanAttack()) { continue; }
+                   
                     Debug.Log("foundone");
-                    GetComponent<Fighter>().Attack(target);
+                    GetComponent<Fighter>().Attack(target.gameObject);
                 }
                 return true;
 
