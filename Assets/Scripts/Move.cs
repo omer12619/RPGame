@@ -1,13 +1,11 @@
-using RPG.Combat;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+
+using RPG.Core;
 using UnityEngine;
 using UnityEngine.AI;
 
 namespace RPG.Movement
 {
-    public class Move : MonoBehaviour
+    public class Move : MonoBehaviour ,IAction
     {
         [SerializeField] Transform target;
         NavMeshAgent agent;
@@ -42,13 +40,16 @@ namespace RPG.Movement
 
         }
         public void StartMoveAction(Vector3 dest) {
-            GetComponent<Fighter>().unAttack();
+            GetComponent<ActionSchedul>().StartAction(this);
+            
             MoveTODestntion(dest);
+           
         }
-        public void StopMove()
+        public void Cancel()
         {
             agent.isStopped= true;
         }
+       
 
 
 

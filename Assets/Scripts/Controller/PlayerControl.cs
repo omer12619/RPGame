@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using RPG.Movement;
-using System;
-using RPG;
+
 using RPG.Combat;
 
 namespace RPG.Control
@@ -36,6 +34,7 @@ namespace RPG.Control
 
                 if (Input.GetMouseButtonDown(0))
                 {
+                    if (GetComponent<Fighter>().CanAttack()) { continue; }
                     Debug.Log("foundone");
                     GetComponent<Fighter>().Attack(target);
                 }
