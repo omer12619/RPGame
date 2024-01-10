@@ -18,6 +18,7 @@ namespace RPG.Control
         [SerializeField] float chaseDistance = 5f;
         [SerializeField] PatrolPath patrolPath;
         [SerializeField] float waypointTolreance=1f;
+        [SerializeField] float waitatwaitpoint = 1f;
         GameObject player;
 
         Vector3 gurdLoaction;
@@ -28,6 +29,7 @@ namespace RPG.Control
         Health health;
         float timeSinceSawLastPlayer =Mathf.Infinity;
         [SerializeField] float timetoseppichose=3f;
+        float timeAtWaypoint=0;
 
         private void Start()
         {
@@ -43,14 +45,14 @@ namespace RPG.Control
         }
         private void Update()
         {
-            if(health.IsDead()) return;
+            if (health.IsDead()) return;
 
             if (InRangeAttack() && fighter.CanAttack(player))
             {
-                timeSinceSawLastPlayer = 0;
+
                 AttackBehaviour();
             }
-            else if (timetoseppichose>timeSinceSawLastPlayer)
+            else if (timetoseppichose > timeSinceSawLastPlayer)
             {
                 //Suspicion state
                 SuspicionBehaviour();
@@ -60,29 +62,53 @@ namespace RPG.Control
             {
                 PatrolBehaviour();
             }
-            timeSinceSawLastPlayer += Time.deltaTime;
+            UpdateTimer();
 
+        }
+
+        private void UpdateTimer()
+        {
+            timeSinceSawLastPlayer += Time.deltaTime;
+            timeAtWaypoint += Time.deltaTime;
         }
 
         private void PatrolBehaviour()
         {
+
             Vector3 nextPosition = gurdLoaction;
-            if(patrolPath != null)
+            if (patrolPath != null)
             {
                 if (atWaypoint())
                 {
-                    CycleWaypoint();
+                    if (timeAtWaypoint > waitatwaitpoint)
+                    {
+                        timeAtWaypoint = 0;
+                        CycleWaypoint();
+                    }
                 }
                 nextPosition = GetCurretWayPoint();
 
 
             }
+            if(timeAtWaypoint > waitatwaitpoint)
+            {
+                Moveto(nextPosition);
+            }
            
+            
+        }
+
+        private void Moveto(Vector3 nextPosition)
+        {
+            
             GetComponent<Move>().StartMoveAction(nextPosition);
         }
 
+
         private bool atWaypoint()
         {
+            
+            
             float distancetoWaypoint = Vector3.Distance(transform.position, GetCurretWayPoint());
             if(distancetoWaypoint<waypointTolreance) {
                 return true;
@@ -109,6 +135,7 @@ namespace RPG.Control
 
         private void AttackBehaviour()
         {
+            timeSinceSawLastPlayer = 0;
             fighter.Attack(player);
         }
 
