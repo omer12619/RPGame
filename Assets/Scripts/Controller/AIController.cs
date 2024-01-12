@@ -19,6 +19,8 @@ namespace RPG.Control
         [SerializeField] PatrolPath patrolPath;
         [SerializeField] float waypointTolreance=1f;
         [SerializeField] float waitatwaitpoint = 1f;
+        [Range(0f, 1f)]
+        [SerializeField] float patrolspeedfraction = 0.2f;
         GameObject player;
 
         Vector3 gurdLoaction;
@@ -101,7 +103,7 @@ namespace RPG.Control
         private void Moveto(Vector3 nextPosition)
         {
             
-            GetComponent<Move>().StartMoveAction(nextPosition);
+            GetComponent<Move>().StartMoveAction(nextPosition,patrolspeedfraction);
         }
 
 

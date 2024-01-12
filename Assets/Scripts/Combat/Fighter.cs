@@ -26,6 +26,7 @@ namespace RPG.Combat
         public void Cancel()
         {
             target = null;
+            GetComponent<Move>().Cancel();
             StopAttack();
 
         }
@@ -55,7 +56,7 @@ namespace RPG.Combat
 
                 if (target != null && !isInRange)
                 {
-                    GetComponent<Move>().MoveTODestntion(target.transform.position);
+                    GetComponent<Move>().MoveTODestntion(target.transform.position,1f);
                 }
                 else
                 {
