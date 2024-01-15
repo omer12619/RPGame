@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.AI;
+using RPG.ScenceMangment;
 
 public class Portal : MonoBehaviour
 {
@@ -13,9 +14,15 @@ public class Portal : MonoBehaviour
         A,B,C,D,E,F,G,H
     }
     [SerializeField] int scencetoload = -1;
-    [SerializeField] GameObject player;
+ 
     [SerializeField] Transform spawnPoint;
     [SerializeField] DestiantionID destiantionID;
+    [SerializeField] float fadeouttime =0.5f;
+    [SerializeField] float fadeintime =1f;
+    [SerializeField] float delay =1f;
+    
+
+
     // Start is called before the first frame update
     private void OnTriggerEnter(Collider other)
     {
@@ -34,10 +41,16 @@ public class Portal : MonoBehaviour
             yield break;
         }
         DontDestroyOnLoad(gameObject);
+        Fader fader= FindObjectOfType<Fader>();
+        yield return fader.Fadeout(fadeouttime);
+
 
         yield return SceneManager.LoadSceneAsync(scencetoload);
         Portal other= GetotherPortal();
         UpdatePlayer(other);
+        yield return new  WaitForSeconds(delay);
+        yield return fader.Fadein(fadeintime);
+
         Destroy(gameObject);
     }
 

@@ -57,6 +57,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30cf93deff988e74e88a144bd2127c18, type: 3}
+--- !u!4 &1196604746736002275 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 423694, guid: 30cf93deff988e74e88a144bd2127c18, type: 3}
+  m_PrefabInstance: {fileID: 1196604746735588333}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1196604746736059617 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 481036, guid: 30cf93deff988e74e88a144bd2127c18, type: 3}
+  m_PrefabInstance: {fileID: 1196604746735588333}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7724709085999869384
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -120,6 +130,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5482604796189017365, guid: 93e62ce1a2cbd6e419d674ebfff80ad0, type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 7bf6a40c6c5a78146bf6aabe65dd0c43, type: 2}
+    - target: {fileID: 5482604796189017365, guid: 93e62ce1a2cbd6e419d674ebfff80ad0, type: 3}
+      propertyPath: handposition
+      value: 
+      objectReference: {fileID: 1196604746736002275}
+    - target: {fileID: 5482604796189017365, guid: 93e62ce1a2cbd6e419d674ebfff80ad0, type: 3}
+      propertyPath: defaultweapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 7bf6a40c6c5a78146bf6aabe65dd0c43, type: 2}
+    - target: {fileID: 5482604796189017365, guid: 93e62ce1a2cbd6e419d674ebfff80ad0, type: 3}
+      propertyPath: lefthandTransform
+      value: 
+      objectReference: {fileID: 1196604746736059617}
+    - target: {fileID: 5482604796189017365, guid: 93e62ce1a2cbd6e419d674ebfff80ad0, type: 3}
+      propertyPath: righthandTransform
+      value: 
+      objectReference: {fileID: 1196604746736002275}
     m_RemovedComponents:
     - {fileID: 408275687721739138, guid: 93e62ce1a2cbd6e419d674ebfff80ad0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 93e62ce1a2cbd6e419d674ebfff80ad0, type: 3}
@@ -160,6 +190,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chaseDistance: 5
+  patrolPath: {fileID: 0}
+  waypointTolreance: 1
+  waitatwaitpoint: 1
+  patrolspeedfraction: 0.2
+  timetoseppichose: 3
 --- !u!114 &4863734024366290927
 MonoBehaviour:
   m_ObjectHideFlags: 0

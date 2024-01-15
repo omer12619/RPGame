@@ -1,5 +1,6 @@
 using RPG.Core;
 using RPG.Movement;
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,14 +8,60 @@ namespace RPG.Combat
 {
     public class Fighter : MonoBehaviour ,IAction
     {
-        [SerializeField] float RangeOfAttack =2f;
+        
         [SerializeField] float timeBetweenAttack = 1f;
-        [SerializeField] float weaponDamage = 1f;
+        
+       
+        [SerializeField] Transform righthandTransform =null;
+        [SerializeField] Transform lefthandTransform = null;
+        [SerializeField] Weapon defaultweapon=null;
+        
         Health target;
         float timeforlastattck = Mathf.Infinity;
-        
+        Weapon currentWeapon;
+
 
         // Start is called before the first frame update
+        private void Start()
+        {
+            Equipeweapon(defaultweapon);
+        }
+
+        // Update is called once per frame
+        private void Update()
+        {
+            timeforlastattck += Time.deltaTime;
+            if (target != null)
+            {
+                if (target.IsDead()) { return; }
+
+                bool isInRange = Vector3.Distance(transform.position, target.transform.position) < currentWeapon.GetRangeOfAttack();
+
+                if (target != null && !isInRange)
+                {
+                    GetComponent<Move>().MoveTODestntion(target.transform.position, 1f);
+                }   
+                else
+                {
+                    GetComponent<Move>().Cancel();
+                    if (timeBetweenAttack < timeforlastattck)
+                    {
+                        AttackBehaviour();
+                        timeforlastattck = 0f;
+                    }
+                }
+            }
+
+
+        }
+
+        public void Equipeweapon(Weapon weapon)
+        {
+           currentWeapon = weapon;
+           Animator animator = GetComponent<Animator>();
+           weapon.Spawn(righthandTransform,lefthandTransform,animator);
+        }
+
         public void Attack(GameObject combattarget)
         {
             GetComponent<ActionSchedul>().StartAction(this);
@@ -44,33 +91,7 @@ namespace RPG.Combat
 
 
 
-        // Update is called once per frame
-        private void Update()
-        {
-            timeforlastattck+= Time.deltaTime;
-            if (target != null)
-            {
-                if (target.IsDead()) { return; }
-
-                bool isInRange = Vector3.Distance(transform.position, target.transform.position) < RangeOfAttack;
-
-                if (target != null && !isInRange)
-                {
-                    GetComponent<Move>().MoveTODestntion(target.transform.position,1f);
-                }
-                else
-                {
-                    GetComponent<Move>().Cancel();
-                    if (timeBetweenAttack < timeforlastattck)
-                    {
-                        AttackBehaviour();
-                        timeforlastattck = 0f;
-                    }
-                }
-            }
-
-
-        }
+        
 
 
 
@@ -93,9 +114,9 @@ namespace RPG.Combat
         {
             if (target == null) { return; }
             
-            target.TakeDamage(weaponDamage);
+            target.TakeDamage(currentWeapon.GetDamage());
         }
-        public bool CanAttack(GameObject combatTarget)
+        public bool CanAttack(GameObject combatTarget)  
         {
             if (combatTarget == null) { return false; }
             Health targetToTest = combatTarget.GetComponent<Health>();

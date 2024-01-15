@@ -67,6 +67,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5482604796189017365, guid: 93e62ce1a2cbd6e419d674ebfff80ad0, type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 11400000, guid: cff69d5ab5db8964697d4e20641ad281, type: 2}
+    - target: {fileID: 5482604796189017365, guid: 93e62ce1a2cbd6e419d674ebfff80ad0, type: 3}
+      propertyPath: equipment
+      value: 
+      objectReference: {fileID: 9154717780909829313, guid: 156787ac93e75fd43adbf769a2d5845f, type: 3}
+    - target: {fileID: 5482604796189017365, guid: 93e62ce1a2cbd6e419d674ebfff80ad0, type: 3}
+      propertyPath: handposition
+      value: 
+      objectReference: {fileID: 2066889118884905462}
+    - target: {fileID: 5482604796189017365, guid: 93e62ce1a2cbd6e419d674ebfff80ad0, type: 3}
+      propertyPath: defaultweapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 7bf6a40c6c5a78146bf6aabe65dd0c43, type: 2}
+    - target: {fileID: 5482604796189017365, guid: 93e62ce1a2cbd6e419d674ebfff80ad0, type: 3}
+      propertyPath: lefthandTransform
+      value: 
+      objectReference: {fileID: 2066889118884848030}
+    - target: {fileID: 5482604796189017365, guid: 93e62ce1a2cbd6e419d674ebfff80ad0, type: 3}
+      propertyPath: righthandTransform
+      value: 
+      objectReference: {fileID: 2066889118884905462}
+    - target: {fileID: 5482604796189017365, guid: 93e62ce1a2cbd6e419d674ebfff80ad0, type: 3}
+      propertyPath: animatorOverrideController
+      value: 
+      objectReference: {fileID: 22100000, guid: 8733fc9f40a13604ea697a81bc987775, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93e62ce1a2cbd6e419d674ebfff80ad0, type: 3}
 --- !u!1 &533867458028759347 stripped
@@ -74,6 +102,22 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 688551106944520451, guid: 93e62ce1a2cbd6e419d674ebfff80ad0, type: 3}
   m_PrefabInstance: {fileID: 1073708334190737456}
   m_PrefabAsset: {fileID: 0}
+--- !u!54 &4314962025504564326
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533867458028759347}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!136 &2231981884321453907
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -166,3 +210,13 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 3f6fc0cf5e5d31c458bc74ede87cb8ae, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 679ff741e12a7e740819ede24a7000b7, type: 3}
+--- !u!4 &2066889118884848030 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 403948, guid: 679ff741e12a7e740819ede24a7000b7, type: 3}
+  m_PrefabInstance: {fileID: 2066889118885234802}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2066889118884905462 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 461188, guid: 679ff741e12a7e740819ede24a7000b7, type: 3}
+  m_PrefabInstance: {fileID: 2066889118885234802}
+  m_PrefabAsset: {fileID: 0}
