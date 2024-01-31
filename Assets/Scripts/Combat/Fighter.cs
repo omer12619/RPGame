@@ -1,12 +1,14 @@
+using Newtonsoft.Json.Linq;
 using RPG.Core;
 using RPG.Movement;
+using RPG.Saving;
 using System;
 using UnityEngine;
 using UnityEngine.AI;
 
 namespace RPG.Combat
 {
-    public class Fighter : MonoBehaviour ,IAction
+    public class Fighter : MonoBehaviour ,IAction  , IJsonSaveable
     {
         
         [SerializeField] float timeBetweenAttack = 1f;
@@ -16,6 +18,8 @@ namespace RPG.Combat
         [SerializeField] Transform lefthandTransform = null;
         [SerializeField] Weapon defaultweapon=null;
         
+      
+        
         Health target;
         float timeforlastattck = Mathf.Infinity;
         Weapon currentWeapon;
@@ -24,7 +28,12 @@ namespace RPG.Combat
         // Start is called before the first frame update
         private void Start()
         {
-            Equipeweapon(defaultweapon);
+            if (currentWeapon == null)
+            {
+                Equipeweapon(defaultweapon);
+
+
+            }
         }
 
         // Update is called once per frame
@@ -113,14 +122,42 @@ namespace RPG.Combat
         void Hit()
         {
             if (target == null) { return; }
+            if(currentWeapon.hasprojectile())
+            {
+                currentWeapon.LunchProjectile(righthandTransform,lefthandTransform,target);
+
+            }
+            else
+            {
+                target.TakeDamage(currentWeapon.GetDamage());
+
+            }
             
-            target.TakeDamage(currentWeapon.GetDamage());
+            
+        }
+
+        void Shoot() {
+            Hit();
+
         }
         public bool CanAttack(GameObject combatTarget)  
         {
             if (combatTarget == null) { return false; }
             Health targetToTest = combatTarget.GetComponent<Health>();
             return targetToTest != null && !targetToTest.IsDead();
+        }
+
+        public JToken CaptureAsJToken()
+        {
+            return JToken.FromObject(defaultweapon.name);
+        }
+
+        public void RestoreFromJToken(JToken state)
+        {
+            string weaponName = state.ToObject<string>();
+            Weapon weapon = Resources.Load<Weapon>(weaponName);
+            Equipeweapon(weapon);
+
         }
     }
 }

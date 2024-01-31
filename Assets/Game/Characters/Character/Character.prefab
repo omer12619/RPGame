@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1498048187}
   - component: {fileID: 1498048191}
   - component: {fileID: 4108981959919285571}
+  - component: {fileID: 7016732384421106698}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -93,6 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  maxspeed: 6
 --- !u!195 &1498048182
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -127,9 +129,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b32642afe2a8e74da85f05162cdcef5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RangeOfAttack: 2
   timeBetweenAttack: 1
-  weaponDamage: 1
+  righthandTransform: {fileID: 0}
+  lefthandTransform: {fileID: 0}
+  defaultweapon: {fileID: 0}
 --- !u!95 &1498048187
 Animator:
   serializedVersion: 5
@@ -176,3 +179,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+--- !u!114 &7016732384421106698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 688551106944520451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07557caf7b4e87c46926491d83d5cfb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 

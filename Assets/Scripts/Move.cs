@@ -2,10 +2,12 @@
 using RPG.Core;
 using UnityEngine;
 using UnityEngine.AI;
+using RPG.Saving;
+using Newtonsoft.Json.Linq;
 
 namespace RPG.Movement
 {
-    public class Move : MonoBehaviour ,IAction
+    public class Move : MonoBehaviour ,IAction, IJsonSaveable
     {
         [SerializeField] Transform target;
         [SerializeField] float maxspeed=6f;
@@ -58,7 +60,21 @@ namespace RPG.Movement
         {
             agent.isStopped= true;
         }
-       
+        public JToken CaptureAsJToken()
+        {
+            return transform.position.ToToken();
+        }
+
+        public void RestoreFromJToken(JToken state)
+        {
+            agent.enabled = false;
+            transform.position = state.ToVector3();
+            agent.enabled = true;
+
+            GetComponent<ActionSchedul>().CancelAction();
+        }
+
+
 
 
 

@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using Newtonsoft.Json.Linq;
+using RPG.Saving;
+using RPG.Combat;
+
 
 namespace RPG.Core
 {
-    public class Health : MonoBehaviour
+    public class Health : MonoBehaviour, IJsonSaveable
     {
         [SerializeField] float health = 100;
         bool die = false;
@@ -47,6 +51,17 @@ namespace RPG.Core
                
                 GetComponent<ActionSchedul>().CancelAction();
             }
+        }
+
+        public JToken CaptureAsJToken()
+        {
+            return JToken.FromObject(health);
+        }
+
+        public void RestoreFromJToken(JToken state)
+        {
+            health = state.ToObject<float>();
+            
         }
 
     }

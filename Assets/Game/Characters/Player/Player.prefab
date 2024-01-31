@@ -95,6 +95,10 @@ PrefabInstance:
       propertyPath: animatorOverrideController
       value: 
       objectReference: {fileID: 22100000, guid: 8733fc9f40a13604ea697a81bc987775, type: 2}
+    - target: {fileID: 7016732384421106698, guid: 93e62ce1a2cbd6e419d674ebfff80ad0, type: 3}
+      propertyPath: uniqueIdentifier
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93e62ce1a2cbd6e419d674ebfff80ad0, type: 3}
 --- !u!1 &533867458028759347 stripped
