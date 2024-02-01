@@ -1,4 +1,4 @@
-using RPG.Core;
+using RPG.Attributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

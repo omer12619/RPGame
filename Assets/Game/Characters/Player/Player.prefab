@@ -23,6 +23,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 688551106944520451, guid: 93e62ce1a2cbd6e419d674ebfff80ad0, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 5285895168602143905, guid: 93e62ce1a2cbd6e419d674ebfff80ad0, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -99,6 +103,18 @@ PrefabInstance:
       propertyPath: uniqueIdentifier
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7227847831128064689, guid: 93e62ce1a2cbd6e419d674ebfff80ad0, type: 3}
+      propertyPath: progression
+      value: 
+      objectReference: {fileID: 11400000, guid: c268abfefd563fe499c735833efb763c, type: 2}
+    - target: {fileID: 7227847831128064689, guid: 93e62ce1a2cbd6e419d674ebfff80ad0, type: 3}
+      propertyPath: startingLevel
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7227847831128064689, guid: 93e62ce1a2cbd6e419d674ebfff80ad0, type: 3}
+      propertyPath: characterClass
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93e62ce1a2cbd6e419d674ebfff80ad0, type: 3}
 --- !u!1 &533867458028759347 stripped
@@ -162,6 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingLevel: 1
   characterClass: 0
+  progression: {fileID: 0}
 --- !u!4 &5169518487976756369 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5285895168602143905, guid: 93e62ce1a2cbd6e419d674ebfff80ad0, type: 3}

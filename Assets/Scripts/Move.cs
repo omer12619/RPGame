@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using RPG.Saving;
 using Newtonsoft.Json.Linq;
+using RPG.Attributes;
 
 namespace RPG.Movement
 {

@@ -2,7 +2,7 @@ using Newtonsoft.Json.Linq;
 using RPG.Core;
 using RPG.Movement;
 using RPG.Saving;
-using System;
+using RPG.Attributes;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -158,6 +158,11 @@ namespace RPG.Combat
             Weapon weapon = Resources.Load<Weapon>(weaponName);
             Equipeweapon(weapon);
 
+        }
+        public Health getTarget()
+        {
+            return target;
+                
         }
     }
 }

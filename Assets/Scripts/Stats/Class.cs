@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace RPG.Stats
 {
-    enum ClassCh
+    public enum ClassCh
     {
         Player,
         Solider,

@@ -5,17 +5,29 @@ using UnityEngine;
 using Newtonsoft.Json.Linq;
 using RPG.Saving;
 using RPG.Combat;
+using RPG.Core;
+using RPG.Stats;
 
 
-namespace RPG.Core
+namespace RPG.Attributes
 {
     public class Health : MonoBehaviour, IJsonSaveable
     {
         [SerializeField] float health = 100;
         bool die = false;
 
+
+
+
+
+        private void Start()
+        {
+            health= GetComponent<BaseStats>().GetHealth();
+        }
+
         public bool IsDead()
         {
+            
             return die;
         }
 
@@ -63,6 +75,19 @@ namespace RPG.Core
             health = state.ToObject<float>();
             
         }
+
+
+
+        public  float toPrecantage()
+        {
+            
+
+            float prec = 100 * (health / GetComponent<BaseStats>().GetHealth());
+            
+            return prec;
+
+        }
+
 
     }
 }

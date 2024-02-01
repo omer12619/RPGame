@@ -150,6 +150,14 @@ PrefabInstance:
       propertyPath: righthandTransform
       value: 
       objectReference: {fileID: 1196604746736002275}
+    - target: {fileID: 7227847831128064689, guid: 93e62ce1a2cbd6e419d674ebfff80ad0, type: 3}
+      propertyPath: progression
+      value: 
+      objectReference: {fileID: 11400000, guid: c268abfefd563fe499c735833efb763c, type: 2}
+    - target: {fileID: 7227847831128064689, guid: 93e62ce1a2cbd6e419d674ebfff80ad0, type: 3}
+      propertyPath: startingLevel
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 408275687721739138, guid: 93e62ce1a2cbd6e419d674ebfff80ad0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 93e62ce1a2cbd6e419d674ebfff80ad0, type: 3}
