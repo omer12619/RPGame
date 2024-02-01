@@ -60,10 +60,10 @@ namespace RPG.Combat
         {
             return projectile != null;
         }
-        public void LunchProjectile(Transform  righthandtransform, Transform leftTransform,Health target)
+        public void LunchProjectile(Transform  righthandtransform, Transform leftTransform,Health target,GameObject instegator)
         {
             Projectile projectileInstance = Instantiate(projectile, GetHand(righthandtransform, leftTransform).position, Quaternion.identity);
-            projectileInstance.SetTarget(target,weaponDamage);
+            projectileInstance.SetTarget(target,instegator,weaponDamage);
         }
 
        public float GetDamage(){return weaponDamage;}

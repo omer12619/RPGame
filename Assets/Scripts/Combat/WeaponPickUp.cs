@@ -15,7 +15,7 @@ namespace RPG.Combat {
             if (other != null && other.gameObject.tag == "Player")
             {
                 other.GetComponent<Fighter>().Equipeweapon(weapon);
-                StartCoroutine(HideuntilNotOwn(3f));
+                StartCoroutine(HideuntilNotOwn(respawnTime));
                 
     
             }

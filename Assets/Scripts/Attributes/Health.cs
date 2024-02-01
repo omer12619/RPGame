@@ -32,7 +32,7 @@ namespace RPG.Attributes
         }
 
         // Start is called before the first frame update
-        public void TakeDamage(float damage)
+        public void TakeDamage(GameObject instigator,float damage)
         {
             
             if (health > 0)
@@ -43,6 +43,7 @@ namespace RPG.Attributes
             {
                 health = 0;
                 triggerDieAnimtion();
+                AwardExperience(instigator);
                 
             }
         }
@@ -88,6 +89,14 @@ namespace RPG.Attributes
 
         }
 
+
+        private void AwardExperience(GameObject instigator)
+        {
+            Experience experience = instigator.GetComponent<Experience>();
+            if (experience == null) return;
+
+            experience.GainExperience(GetComponent<BaseStats>().GetExperience());
+        }
 
     }
 }

@@ -28,10 +28,12 @@ namespace RPG.Combat
             if (health != null)
             {
                 GetComponent<Text>().text = String.Format("{0:0}%", health.toPrecantage());
+                return;
             }
             else
             {
                 GetComponent<Text>().text = String.Format("None");
+                return;
 
             }
         }

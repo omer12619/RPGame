@@ -1,0 +1,9 @@
+diff a/Assets/Game/Characters/Character/Character.prefab b/Assets/Game/Characters/Character/Character.prefab	(rejected hunks)
+@@ -17,6 +17,7 @@
+   - component: {fileID: 1498048191}
+   - component: {fileID: 4108981959919285571}
+   - component: {fileID: 7016732384421106698}
++  - component: {fileID: 7227847831128064689}
+   m_Layer: 0
+   m_Name: Character
+   m_TagString: Untagged

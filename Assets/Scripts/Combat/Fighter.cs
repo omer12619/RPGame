@@ -124,12 +124,12 @@ namespace RPG.Combat
             if (target == null) { return; }
             if(currentWeapon.hasprojectile())
             {
-                currentWeapon.LunchProjectile(righthandTransform,lefthandTransform,target);
+                currentWeapon.LunchProjectile(righthandTransform,lefthandTransform,target,gameObject);
 
             }
             else
             {
-                target.TakeDamage(currentWeapon.GetDamage());
+                target.TakeDamage(gameObject,currentWeapon.GetDamage());
 
             }
             

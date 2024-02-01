@@ -14,7 +14,8 @@ namespace RPG.Combat
         [SerializeField] bool isHoming = false;
         [SerializeField] GameObject hiEffect = null;
         [SerializeField] float lifetime = 2f;
-        [SerializeField] float timetodie = 2f;
+        GameObject instigator = null;
+      
         [SerializeField] GameObject[] destroyOnHit = null;
 
         // Start is called before the first frame update
@@ -52,8 +53,9 @@ namespace RPG.Combat
             return target.transform.position + Vector3.up * capsuleCollider.height / 2;
 
         }
-        public void SetTarget(Health target,float damage)
+        public void SetTarget(Health target,GameObject instegator,float damage)
         {
+            this.instigator = instegator;
             this.target = target;
             this.damage = damage;
             Destroy(gameObject, lifetime);
@@ -65,7 +67,7 @@ namespace RPG.Combat
                 return;
             }
             if (target.IsDead()) return;
-            target.TakeDamage(damage);
+            target.TakeDamage(instigator,damage);
 
             if(hiEffect != null)
             {
