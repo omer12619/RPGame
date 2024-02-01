@@ -22,7 +22,7 @@ namespace RPG.Attributes
 
         private void Start()
         {
-            health= GetComponent<BaseStats>().GetHealth();
+            health= GetComponent<BaseStats>().GetStat(Statis.Health);
         }
 
         public bool IsDead()
@@ -83,7 +83,7 @@ namespace RPG.Attributes
         {
             
 
-            float prec = 100 * (health / GetComponent<BaseStats>().GetHealth());
+            float prec = 100 * (health / GetComponent<BaseStats>().GetStat(Statis.Health));
             
             return prec;
 
@@ -95,7 +95,7 @@ namespace RPG.Attributes
             Experience experience = instigator.GetComponent<Experience>();
             if (experience == null) return;
 
-            experience.GainExperience(GetComponent<BaseStats>().GetExperience());
+            experience.GainExperience(GetComponent<BaseStats>().GetStat(Statis.ExperienceReward));
         }
 
     }

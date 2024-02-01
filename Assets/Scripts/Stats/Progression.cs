@@ -1,3 +1,4 @@
+using RPG.Attributes;
 using RPG.Stats;
 using UnityEngine;
 namespace RPG.Stats
@@ -17,16 +18,31 @@ namespace RPG.Stats
          class ProgressionCharacterClass
         {
             public ClassCh characterClass;
-            public float[] health;
+            public Pograssionstats[] pograssionstats;
         }
 
-        public  float GetHealth(ClassCh classCh, int level)
+
+        [System.Serializable]
+
+        class Pograssionstats
+        {
+            public Statis stats;
+            public float[] level;
+
+        }
+
+        public  float GetStats(Statis stat,ClassCh classCh ,int level)
         {
             foreach(ProgressionCharacterClass progression in characterClasses)
             {
-                if(progression.characterClass == classCh)   
+                if (progression.characterClass != classCh) continue;  
+                foreach( Pograssionstats pograssionstats in progression.pograssionstats)
                 {
-                    return progression.health[level-1];
+                    if (pograssionstats.stats != stat) continue;
+
+                    if (pograssionstats.level.Length < level) continue;
+                    return pograssionstats.level[level - 1];
+
                 }
             }
             return 0;

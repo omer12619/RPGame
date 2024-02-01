@@ -1,3 +1,4 @@
+using RPG.Attributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,13 +15,10 @@ namespace RPG.Stats
 
         [SerializeField] Progression progression;
         // Start is called before the first frame update
-        public float GetHealth()
+        public float GetStat(Statis stat)
         {
-            return progression.GetHealth(characterClass, startingLevel);
+            return progression.GetStats(stat,characterClass, startingLevel);
         }
-        public float GetExperience()
-        {
-            return 10f;
-        }
+       
     }
 };
